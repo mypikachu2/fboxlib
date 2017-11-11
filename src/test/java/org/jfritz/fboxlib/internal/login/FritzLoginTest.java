@@ -175,12 +175,12 @@ public class FritzLoginTest {
 
     @Test
     public void lastUserName___fw_06_24() {
-        String line = "  [\"boxusers:settings/last_homenetwork_username\"] = \"robotniko\",";
+        String line = "  [\"boxusers:settings/last_homenetwork_username\"] = \"laptop\",";
         login.fwVersion = new FirmwareVersion((byte) 113, (byte) 06, (byte) 24);
         login.extractLastUsername(line);
         String userName = login.getLastUserName();
 
-        Assert.assertEquals("robotniko", userName);
+        Assert.assertEquals("laptop", userName);
     }
 
     @Test
@@ -245,12 +245,12 @@ public class FritzLoginTest {
 
     @Test
     public void lastUserName___fw_06_25() {
-        String line = " <input type=\"hidden\" id=\"username\" name=\"username\" value=\"robotniko\"> ";
+        String line = " <input type=\"hidden\" id=\"username\" name=\"username\" value=\"myUserName\"> ";
         login.fwVersion = new FirmwareVersion((byte) 113, (byte) 06, (byte) 25);
         login.extractLastUsername(line);
         String userName = login.getLastUserName();
 
-        Assert.assertEquals("robotniko", userName);
+        Assert.assertEquals("myUserName", userName);
     }
 
     @Test
@@ -315,12 +315,12 @@ public class FritzLoginTest {
 
     @Test
     public void lastUserName___fw_06_35() {
-        String line = " \"username\": \"robotniko\", ";
+        String line = " \"username\": \"myUserName\", ";
         login.fwVersion = new FirmwareVersion((byte) 113, (byte) 06, (byte) 35);
         login.extractLastUsername(line);
         String userName = login.getLastUserName();
 
-        Assert.assertEquals("robotniko", userName);
+        Assert.assertEquals("myUserName", userName);
     }
 
     @Test
