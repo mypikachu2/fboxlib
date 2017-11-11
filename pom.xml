@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.robotniko</groupId>
+	<groupId>org.jfritz</groupId>
 	<artifactId>fboxlib</artifactId>
 	<version>1.0.25-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -34,8 +34,7 @@
 	</build>
 
 	<scm>
-		<developerConnection>svm:git:https://robotniko@gitblit.jfritz.org/r/fboxlib.git</developerConnection>
-		<tag>fboxlib-1.0.24</tag>
+		<developerConnection>scm:git:https://github.com/jfritz-org/fboxlib.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
