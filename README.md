@@ -1,4 +1,4 @@
-## Requiremetns
+## Requirements
 * maven 3.3.x (https://maven.apache.org/)
 
 ## Build
