@@ -15,7 +15,10 @@ import java.util.Vector;
 public class QueryLua extends IQuery {
 
     private static final String QUERY_LUA = "/query.lua";
-    private static final int MAX_QUERIES_PER_REQUEST = 30;
+    // 06.11.2017 Ich habe den Wert auf 80 gesetzt, da ich ein Problem mit einer alten
+    // Firmware xxx.04.84 hatte da ging das Abholen der Anrufliste erst Feherfrei
+    // wenn ich den Wert hier mindestens auf 80 gesetzt hatte
+    private static final int MAX_QUERIES_PER_REQUEST = 80;
 
     protected FritzBoxCommunication fritzBox;
     private JSONParser jsonParser;
