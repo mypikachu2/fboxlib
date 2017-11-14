@@ -14,6 +14,7 @@ import org.jfritz.fboxlib.internal.access.GetPageWithSid;
 import org.jfritz.fboxlib.internal.helper.HttpHelper;
 import org.jfritz.fboxlib.internal.login.FritzLogin;
 import org.jfritz.fboxlib.internal.query.IQuery;
+import org.jfritz.fboxlib.internal.query.Query;
 import org.jfritz.fboxlib.internal.query.QueryFactory;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class FritzBoxCommunication extends IQuery {
+public class FritzBoxCommunication implements IQuery {
 
     public static final String URL_WEBCM = "/cgi-bin/webcm";
 
@@ -44,7 +45,7 @@ public class FritzBoxCommunication extends IQuery {
     private LoginMethod loginMethod;
     private FritzLogin fritzLogin;
     private GetPage getPage;
-    private IQuery query;
+    private Query query;
 
     private NetworkMethods networkMethods;
 
@@ -380,7 +381,7 @@ public class FritzBoxCommunication extends IQuery {
         this.loginMethod = lm;
     }
 
-    public IQuery getQueryMethodForFritzBox() throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException {
+    public Query getQueryMethodForFritzBox() throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException {
         if (query == null) {
             query = QueryFactory.getQueryMethodForFritzBox(this);
         }
