@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class QueryTxtOld extends IQuery {
+public class QueryTxtOld extends Query {
 
     private FritzBoxCommunication fritzBox;
 

@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.Vector;
 
-public class QueryLua extends IQuery {
+public class QueryLua extends Query {
 
     private static final String QUERY_LUA = "/query.lua";
     private static final int MAX_QUERIES_PER_REQUEST = 30;

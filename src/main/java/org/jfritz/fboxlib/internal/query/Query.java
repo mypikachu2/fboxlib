@@ -8,9 +8,10 @@ import org.jfritz.fboxlib.exceptions.PageNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
 
-public class IQuery {
+public class Query implements IQuery {
     protected QueryType queryType = QueryType.UNKNOWN;
 
+    @Override
     public Vector<String> getQuery(Vector<String> queries) throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException, InvalidSessionIdException {
         // not implemented
         return null;

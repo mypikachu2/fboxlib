@@ -13,24 +13,35 @@ public class QueryFactory {
 
     private static final String QUERY_GET_VERSION = "logic:status/nspver";
 
-    public static IQuery getQueryMethodForFritzBox(FritzBoxCommunication fritzBox) throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException {
+    public static Query getQueryMethodForFritzBox(FritzBoxCommunication fritzBox) throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException {
 
         Vector<String> query = new Vector<String>();
         query.add(QUERY_GET_VERSION);
 
-        IQuery queryOld = new QueryTxtOld(fritzBox);
-        IQuery queryNew = new QueryTxtNew(fritzBox);
-        IQuery queryLua = new QueryLua(fritzBox);
-        IQuery queryUnknown = new QueryUnknown();
+        Query queryOld = new QueryTxtOld(fritzBox);
+        Query queryNew = new QueryTxtNew(fritzBox);
+        Query queryLua = new QueryLua(fritzBox);
+        Query queryUnknown = new QueryUnknown();
 
         boolean result = false;
         try {
-            result = checkQuery(queryOld);
+            result = checkQuery(queryLua);
             if (result) {
-                return queryOld;
+                return queryLua;
             }
         } catch (Exception e) {
-            // nothing to do, test of queryOld failed, continue with other checks
+            // nothing to do, test of queryLua failed, continue with other checks
+        }
+
+        if (!result) {
+            try {
+                result = checkQuery(queryOld);
+                if (result) {
+                    return queryOld;
+                }
+            } catch (Exception e) {
+                // nothing to do, test of queryOld failed, continue with other checks
+            }
         }
 
         if (!result) {
@@ -44,22 +55,10 @@ public class QueryFactory {
             }
         }
 
-        if (!result) {
-            try {
-                result = checkQuery(queryLua);
-                if (result) {
-                    return queryLua;
-                }
-            } catch (Exception e) {
-                // nothing to do, test of queryLua failed, continue with other checks
-            }
-        }
-
-
         return queryUnknown;
     }
 
-    private static boolean checkQuery(IQuery iquery) throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException, InvalidSessionIdException {
+    private static boolean checkQuery(Query iquery) throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException, InvalidSessionIdException {
         Vector<String> query = new Vector<String>();
         query.add(QUERY_GET_VERSION);
 
