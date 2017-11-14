@@ -15,7 +15,7 @@ import java.util.Vector;
 public class QueryLua extends IQuery {
 
     private static final String QUERY_LUA = "/query.lua";
-    private static final int MAX_QUERIES_PER_REQUEST = 30;
+    private static final int MAX_QUERIES_PER_REQUEST = 80;
 
     protected FritzBoxCommunication fritzBox;
     private JSONParser jsonParser;
