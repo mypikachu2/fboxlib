@@ -11,7 +11,10 @@ import java.util.Vector;
 
 public class QueryFactory {
 
-    private static final String QUERY_GET_VERSION = "logic:status/nspver";
+    // 06.11.2017 Aenderung ab Firmware Version xxx.06.90 / xxx.06.92
+    //private static final String QUERY_GET_VERSION = "logic:status/nspver"; // geht nicht mehr ab Version xxx.06.90
+    //private static final String QUERY_GET_VERSION = "uimodlogic:status/nspver"; // geht erst ab Version xxx.06.90
+    private static final String QUERY_GET_VERSION = "env:settings/macdsl"; // geht bis jetzt noch bei allen Versionen
 
     public static IQuery getQueryMethodForFritzBox(FritzBoxCommunication fritzBox) throws IOException, LoginBlockedException, InvalidCredentialsException, PageNotFoundException {
 
