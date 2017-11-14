@@ -7,7 +7,7 @@ import org.jfritz.fboxlib.exceptions.PageNotFoundException;
 import java.io.IOException;
 import java.util.Vector;
 
-public class QueryUnknown extends IQuery {
+public class QueryUnknown extends Query {
 
     public QueryUnknown() {
         this.queryType = QueryType.UNKNOWN;
