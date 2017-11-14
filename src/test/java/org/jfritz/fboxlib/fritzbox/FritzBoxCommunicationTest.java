@@ -7,11 +7,14 @@ import org.jfritz.fboxlib.exceptions.InvalidCredentialsException;
 import org.jfritz.fboxlib.exceptions.InvalidSessionIdException;
 import org.jfritz.fboxlib.exceptions.LoginBlockedException;
 import org.jfritz.fboxlib.exceptions.PageNotFoundException;
+import org.jfritz.fboxlib.internal.query.QueryType;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Vector;
+
+import static org.junit.Assert.fail;
 
 public class FritzBoxCommunicationTest {
 
@@ -41,22 +44,25 @@ public class FritzBoxCommunicationTest {
         FritzBoxCommunication fbc = new FritzBoxCommunication("http", "fritz.box", "80");
         LoginMethod loginMethod = fbc.detectLoginMethod();
         LoginMode loginMode = fbc.getLoginMode();
-        fbc.setPassword("mypassword");
+        fbc.setUserName("jfritz-test-user");
+        fbc.setPassword("jfritz-te$t-password");
         Vector<String> queries = new Vector<String>();
         queries.add("telcfg:settings/SIP/count");
         try {
             fbc.login();
+            if (QueryType.UNKNOWN == fbc.getQueryMethodForFritzBox().getQueryType()) {
+                fail("Could not detect query type!");
+            };
+
+            // test query
             Vector<String> response = fbc.getQuery(queries);
             Assert.assertNotNull(response);
         } catch (LoginBlockedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            fail("Login is blocked. Check your credentials!");
         } catch (InvalidCredentialsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            fail("Login failed. Check your credentials!");
         } catch (InvalidSessionIdException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            fail("Invalid sessionId detected");
         }
 
         Assert.assertNotNull(loginMethod);
